@@ -32,5 +32,28 @@ class out {
     }
 }
 
-$sc = new Scanner();
+class CountMap {
+    private $map = [];
 
+    public function get($key) {
+        if(array_key_exists($key, $this->map)) {
+            return $this->map[$key];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getMap() {
+        return $this->map;
+    }
+
+    public function add($key) {
+        if(array_key_exists($key, $this->map)) {
+            $this->map[$key]++;
+        } else {
+            $this->map[$key] = 1;
+        }
+    }
+}
+
+$sc = new Scanner();
