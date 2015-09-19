@@ -32,15 +32,28 @@ class out {
     }
 }
 
-$sc = new Scanner();
-$n = $sc->nextInt();
+class CountMap {
+    private $map = [];
 
-if($n === 100) {
-    out::println('Perfect');
-} else if($n >= 90) {
-    out::println('Great');
-} else if($n >= 60) {
-    out::println('Good');
-} else {
-    out::println('Bad');
+    public function get($key) {
+        if(array_key_exists($key, $this->map)) {
+            return $this->map[$key];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getMap() {
+        return $this->map;
+    }
+
+    public function add($key) {
+        if(array_key_exists($key, $this->map)) {
+            $this->map[$key]++;
+        } else {
+            $this->map[$key] = 1;
+        }
+    }
 }
+
+$sc = new Scanner();
