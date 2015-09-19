@@ -26,11 +26,21 @@ class Scanner {
     }
 }
 
-class Stdout {
+class out {
     public static function println($str) {
         echo $str . PHP_EOL;
     }
 }
 
 $sc = new Scanner();
+$n = $sc->nextInt();
 
+if($n === 100) {
+    out::println('Perfect');
+} else if($n >= 90) {
+    out::println('Great');
+} else if($n >= 60) {
+    out::println('Good');
+} else {
+    out::println('Bad');
+}
