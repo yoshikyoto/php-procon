@@ -57,3 +57,24 @@ class CountMap {
 }
 
 $sc = new Scanner();
+$n = $sc->nextInt();
+$ans = 0;
+
+for($i = 9; $i >= 0; $i--) {
+    $mod = pow(10, $i);
+    $m = (int)($n / $mod) % 10;
+    $down = ($n % $mod);
+    $up = (int)($n / ($mod * 10));
+    if($m === 0) {
+        $cnt = $up * $mod;
+        $ans += $cnt;
+    } else if ($m === 1) {
+        $cnt =  $up * $mod + $down + 1;
+        $ans += $cnt;
+    } else {
+        $cnt = ($up + 1) * $mod;
+        $ans += $cnt;
+    }
+}
+
+out::println($ans);
