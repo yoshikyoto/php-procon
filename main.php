@@ -26,7 +26,7 @@ class Scanner {
     }
 }
 
-class Stdout {
+class out {
     public static function println($str) {
         echo $str . PHP_EOL;
     }
