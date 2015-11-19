@@ -61,5 +61,30 @@ class CountMap {
 }
 
 $sc = new Scanner();
+$in = [];
+for($i = 0; $i < 5; $i++) {
+	$in[] = $sc->nextInt();
+}
 
-out::println();
+$sums = [];
+
+function dfs($chosen, $sum,  $pointer) {
+	if($chosen === 3) {
+		global $sums;
+		$sums[] = $sum;
+		return;
+	}
+	if($pointer === 5) {
+		return;
+	}
+	// 選ばない
+	dfs($chosen, $sum, $pointer + 1);
+	// 選ぶ
+	global $in;
+	dfs($chosen + 1, $sum + $in[$pointer], $pointer + 1);
+}
+
+dfs(0, 0, 0);
+$unique = array_unique($sums);
+rsort($unique);
+out::println($unique[2]);

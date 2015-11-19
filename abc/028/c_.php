@@ -1,0 +1,1 @@
+<?php fscanf(STDIN,"%d %d %d %d %d\n",$a,$b,$c,$d,$e);echo max($a+$d+$e,$b+$c+$e)."\n";

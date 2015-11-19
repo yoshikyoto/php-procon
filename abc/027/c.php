@@ -36,30 +36,27 @@ class out {
     }
 }
 
-class CountMap {
-    private $map = [];
+// 入力
+$sc = new Scanner();
+$n = $sc->nextInt();
+$player = [0 => 'Takahashi', 1 => 'Aoki'];
 
-    public function get($key) {
-        if(array_key_exists($key, $this->map)) {
-            return $this->map[$key];
-        } else {
-            return 0;
-        }
-    }
+// このターン数になった時の位置で勝敗が決まる
+$border_turn = (int)log($n, 2) + 1;
+// $border_turn % 2 === 1 の場合、$border_turn は高橋くん
+// この時高橋君は下に行きたがることになるので
+$takahashi = $border_turn % 2;
+$aoki = 1 - $takahashi;
+$direction = [0 => $takahashi, 1 => $aoki];
 
-    public function getMap() {
-        return $this->map;
-    }
-
-    public function add($key) {
-        if(array_key_exists($key, $this->map)) {
-            $this->map[$key]++;
-        } else {
-            $this->map[$key] = 1;
-        }
-    }
+// これを元に探索
+function dfs($x, $turn) {
+	global $n;
+	if($n < $x) {
+		return $turn;
+	}
+	global $direction;
+	return dfs(2 * $x + $direction[$turn], 1 - $turn);
 }
 
-$sc = new Scanner();
-
-out::println();
+out::println($player[dfs(1, 0)]);

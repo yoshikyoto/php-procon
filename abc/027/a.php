@@ -36,30 +36,15 @@ class out {
     }
 }
 
-class CountMap {
-    private $map = [];
-
-    public function get($key) {
-        if(array_key_exists($key, $this->map)) {
-            return $this->map[$key];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getMap() {
-        return $this->map;
-    }
-
-    public function add($key) {
-        if(array_key_exists($key, $this->map)) {
-            $this->map[$key]++;
-        } else {
-            $this->map[$key] = 1;
-        }
-    }
-}
-
+// 入力
 $sc = new Scanner();
-
-out::println();
+$a = $sc->nextInt();
+$b = $sc->nextInt();
+$c = $sc->nextInt();
+if($a === $b) {
+	out::println($c);
+} else if($a === $c) {
+	out::println($b);
+} else {
+	out::println($a);
+}
