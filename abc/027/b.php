@@ -36,30 +36,39 @@ class out {
     }
 }
 
-class CountMap {
-    private $map = [];
-
-    public function get($key) {
-        if(array_key_exists($key, $this->map)) {
-            return $this->map[$key];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getMap() {
-        return $this->map;
-    }
-
-    public function add($key) {
-        if(array_key_exists($key, $this->map)) {
-            $this->map[$key]++;
-        } else {
-            $this->map[$key] = 1;
-        }
-    }
+// 入力
+$sc = new Scanner();
+$n = $sc->nextInt();
+$a = [];
+$sum = 0;
+for($i = 0; $i < $n; $i++) {
+	$in = $sc->nextInt();
+	$sum += $in;
+	$a[] = $in;
 }
 
-$sc = new Scanner();
-
-out::println();
+// 割り切れるかどうかの確認
+$ans = 0;
+if($sum % $n === 0) {
+	// 割り切れる
+	$target = (int)($sum / $n);
+	$cursum = 0;
+	$curcnt = 0;
+	for($i = 0; $i < $n; $i++) {
+		$cursum += $a[$i];
+		$curcnt += 1;
+		// iとi+1の間に橋をかける必要があるかどうか
+		if(($cursum / $curcnt) === $target) {
+			// かける必要がない
+			$cursum = 0;
+			$curcnt = 0;
+		} else {
+			// かける必要がある
+			$ans++;
+		}
+	}
+	out::println($ans);
+} else {
+	// 割り切れない
+	out::println(-1);
+}
